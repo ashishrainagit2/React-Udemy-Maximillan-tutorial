@@ -14,33 +14,16 @@ class App extends Component {
     showPersons : false
   }
 
-  // switchNameHandler = (newName) => {
-  //   //DONT DO THISthis.state.persons[0].name = 'Maximilian';
-  //     this.setState ({
-  //       persons :  [
-  //         { name: newName , age : 28},
-  //         { name: 'Manu' , age: 29},
-  //         { name: 'Stephneii', age:  22 }
-  //       ]
-  //     })
-  // }
-
   nameChangeHandler = (event , id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
     });
-
       const person = {
         ...this.state.persons[personIndex]
       };
-
-      // const person = Object.assign({} , this.state.persons[personIndex]);
-
       person.name = event.target.value;
-
       const persons = [...this.state.persons];
       persons[personIndex] = person;
-
       this.setState ({ persons : persons });
   }
 
@@ -58,10 +41,8 @@ class App extends Component {
         showPersons : !doesShow
       })
   }
-
   render() {
     let persons = null;
-
     if(this.state.showPersons){
         persons = (
             <Persons 
@@ -69,20 +50,17 @@ class App extends Component {
               clicked={this.deletePersonHandler}
               changed={this.nameChangeHandler}/>
         );
-
     }
-
-   
     return (
       <div className={styles.App}>
           <Cockpit 
+            title={this.props.appTitle}
             showPersons={this.state.showPersons}
             persons={this.state.persons}
             clicked={this.togglePersonHandler}/>
           {persons}           
       </div>
     );
-    //return React.createElement('div', {className : 'App'} , React.createElement('h1', null , 'I am react app with difference') )
   }
 }
 
