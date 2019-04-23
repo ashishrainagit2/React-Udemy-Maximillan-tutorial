@@ -5,19 +5,31 @@ const cockpit  = (props) => {
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
         //Http Request ...
-        setTimeout(() => {
+        const timer = setTimeout(() => {
             alert('saved data to cloud!!');
         } , 1000);
+        return() => {
+            clearTimeout(timer);
+            console.log('[Cockpit.js] Cleanup work in useEffect');
+        };
     } , []);
+
+    useEffect(() => {
+            console.log('[Cockpit.js] 2nd use effect')
+            return () => {
+                console.log('[Cockpit.js] Cleanup work in 2nd  useEffect');
+            };
+        });
+
     const classes = [ ];
     let btnClass = '';
     if(props.showPersons){
         btnClass = styles.Red
     }
-    if(props.persons.length <= 2 ){
+    if(props.personsLength <= 2 ){
       classes.push(styles.red); //
     }
-    if(props.persons.length <= 2 ){
+    if(props.personsLength <= 2 ){
       classes.push(styles.bold); //
     }
     return(
@@ -31,4 +43,4 @@ const cockpit  = (props) => {
         </div>
     );
 };
-export default cockpit;
+export default React.memo(cockpit);
