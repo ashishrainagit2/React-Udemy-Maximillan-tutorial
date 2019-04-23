@@ -5,7 +5,7 @@ import Aux from '../../../hoc/Aux';
 class Person extends Component {
     render(){
         console.log('[Person.js rendering ...]');
-        return 
+        return (
             <Fragment>
                 <div className={styles.Person}>
                     <p onClick={this.props.click}> I'm a {this.props.name} and I am {this.props.age} year old! </p>
@@ -17,7 +17,7 @@ class Person extends Component {
                     />
                 </div> 
             </Fragment>
-        ;
+        );
     } 
 }
 
