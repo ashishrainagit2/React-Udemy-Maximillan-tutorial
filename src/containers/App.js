@@ -41,6 +41,7 @@ class App extends Component {
         showPersons : !doesShow
       })
   }
+  
   render() {
     let persons = null;
     if(this.state.showPersons){
